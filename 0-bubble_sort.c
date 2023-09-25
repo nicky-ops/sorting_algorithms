@@ -1,46 +1,33 @@
-#include <stdio.h>
+#include "sort.h"
 
-void print_array(int *array, size_t size) {
-    size_t i;
-    for (i = 0; i < size; i++) {
-        if (i != 0) {
-            printf(", ");
-        }
-        printf("%d", array[i]);
-    }
-    printf("\n");
+void swap_ints(int *a, int *n)
+{
+    int tmp;
+    tmp = *a;
+    *a = *n;
+    *n = tmp;
 }
 
-void bubble_sort(int *array, size_t size) {
-    size_t i, j;
-    int temp;
+void bubble_sort(int *array, size_t size)
+{
+    size_t i, len = size;
+    bool bubbly = false;
 
-    for (i = 0; i < size - 1; i++) {
-        for (j = 0; j < size - 1 - i; j++) {
-            if (array[j] > array[j + 1]) {
-                // Swap the elements
-                temp = array[j];
-                array[j] = array[j + 1];
-                array[j + 1] = temp;
+    if (array == NULL || size < 2)
+        return;
 
-                // Print the array after each swap
+    while (bubbly == false)
+    {
+        bubbly = true;
+        for (i = 0; i < len - 1; i++)
+        {
+            if (array[i] > array[i + 1])
+            {
+                swap_ints(array + i, array + i + 1);
                 print_array(array, size);
+                bubbly = false;
             }
         }
+        len--;
     }
-}
-
-int main() {
-    int arr[] = {64, 34, 25, 12, 22, 11, 90};
-    size_t size = sizeof(arr) / sizeof(arr[0]);
-
-    printf("Original array: ");
-    print_array(arr, size);
-
-    bubble_sort(arr, size);
-
-    printf("Sorted array: ");
-    print_array(arr, size);
-
-    return 0;
 }
