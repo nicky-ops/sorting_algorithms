@@ -50,6 +50,8 @@ void quicksort(int *array, ssize_t low, ssize_t high, size_t size)
 {
 	ssize_t partition_index;
 
+	if (array == NULL || size < 2)
+		return;
 	if (low < high)
 	{
 		partition_index = lomuto_partition(array, low, high, size);
