@@ -10,8 +10,6 @@
  */
 size_t lomuto_partition(int *array, ssize_t low, ssize_t high, size_t size)
 {
-	if (array == NULL || size < 2)
-		return;
 	int pivot, temp;
 	ssize_t i, j;
 
